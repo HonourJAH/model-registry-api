@@ -1,0 +1,3 @@
+venv/
+registry.db
+__pycache__/
