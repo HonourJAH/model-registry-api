@@ -1,8 +1,8 @@
-"""create model table
+"""initial_model_creation
 
-Revision ID: 7aacd892c6fc
+Revision ID: 73cae35f7cb0
 Revises:
-Create Date: 2026-05-26 04:38:14.893978
+Create Date: 2026-05-27 10:17:47.615032
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 import sqlmodel
 
 # revision identifiers, used by Alembic.
-revision: str = "7aacd892c6fc"
+revision: str = "73cae35f7cb0"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -42,7 +42,11 @@ def upgrade() -> None:
         sa.Column(
             "git_commit_hash", sqlmodel.sql.sqltypes.AutoString(), nullable=False
         ),
-        sa.Column("stage", sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+        sa.Column(
+            "stage",
+            sa.Enum("staging", "production", "archived", name="modelstage"),
+            nullable=True,
+        ),
         sa.Column("is_active", sa.Boolean(), nullable=False),
         sa.PrimaryKeyConstraint("model_id"),
     )
