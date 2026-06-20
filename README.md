@@ -265,12 +265,6 @@ docker build -t model-registry-api .
 docker run -d -p 8000:8000 --name model-registry-api model-registry-api
 ```
 
-**Run with Docker Compose:**
-
-```bash
-docker compose up
-```
-
 ---
 
 ## Example Payloads
